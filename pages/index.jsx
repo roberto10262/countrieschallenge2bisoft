@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Box } from "@mui/material";
 import SearchBar from "@/components/home/SearchBar";
 import CountriesList from "@/components/home/CountriesList";
+import getNativeNames from "@utils/getNativeNames";
 export async function getStaticProps() {
   let countries = null;
   try {
@@ -17,6 +18,7 @@ export async function getStaticProps() {
 
 export default function Home({ countries }) {
   console.log(countries);
+  getNativeNames(countries[0])
   return (
     <>
       <Box
