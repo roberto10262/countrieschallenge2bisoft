@@ -1,65 +1,65 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Box, Stack , Button} from "@mui/material";
+import { getRegions, getSubRegions } from "@utils/filterDependencies";
+import { getNativeNamesAsArray } from "@utils/getNativeNames";
+import CountryCard from "@/components/home/CountryCard";
+import theme from "src/theme";
+import {
+  Paper,
+  AppBar,
+  Toolbar,
+  Stack,
+  Typography,
+  Link,Button,
+  Box,
+} from "@mui/material";
 import SearchBar from "@/components/home/SearchBar";
-import CountriesList from "@/components/home/CountriesList";
-import CountriesListHeader from "@/components/home/CountriesListHeader";
-import getNativeNames from "@utils/getNativeNames";
 export async function getStaticProps() {
   let countries = null;
   try {
-    const res = await fetch(`${process.env.API_URL}/all`);
+    const res = await fetch(
+      `${process.env.API_URL}/all?fields=name,capital,region,subregion,population,area,timezones,flag,flags`
+    );
     countries = await res.json();
   } catch (error) {
     console.log(error);
   }
 
-  return { props: { countries } };
+  return {
+    props: {
+      countries,
+      regions: getRegions(countries),
+      subRegions: getSubRegions(countries),
+    },
+  };
 }
 
-export default function Home({ countries }) {
+const Home = ({ countries, regions, subRegions }) => {
+  const { name, region, area, subregion, timezones, capital, flag, flags } =
+    countries[0];
+  console.log(getNativeNamesAsArray(name.nativeName));
   return (
     <>
       <Box>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium
-        facere obcaecati ea placeat nam laboriosam tempore inventore voluptatem.
-        Placeat aperiam a laudantium inventore rem aut, minima expedita rerum
-        beatae incidunt.
-      </Box>
-      <Box
-        sx={{
-          height: "100vh",
-          flexDirection: "column",
-          display: "flex",
-        }}
-      >
+        <AppBar position="sticky">
+          <Toolbar>
+            <Stack sx={{ marginLeft: "auto", marginRight: "auto", width:{xs:"100%", md:600} }}>
+              <SearchBar countries={countries}/>
+              <Stack direction="row" sx={{paddingY:0.5}} spacing={2}>
+                <Button variant="contained" color="secondary" size="small">filter</Button>
+                <Button variant="contained" color="secondary" size="small">Export</Button>
+              </Stack>
+            </Stack>
+          </Toolbar>
+        </AppBar>
         <Box
-          sx={{
-            height: { xs: 64 },
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
         >
-          <SearchBar />
-        </Box>
-        <Box
-          sx={{
-            marginY:2,
-            flexDirection: "column",
-            flexGrow: 1,
-            paddingY:1,
-            overflowY: "auto",boxShadow:3
-          }}
-        >
-          <CountriesListHeader />
-          <CountriesList countries={countries} />
-        </Box>
-        <Box sx={{ height: { xs: 64 },display:"flex", flexDirection:"row", justifyContent: "center"}}>
-          <Button>Export</Button>
-          <Button>Filter</Button>
+          {countries.map((country) => (
+            <CountryCard country={country} key={country.name.official} />
+          ))}
         </Box>
       </Box>
     </>
   );
-}
+};
+
+export default Home;
