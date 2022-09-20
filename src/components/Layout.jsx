@@ -7,10 +7,10 @@ const Layout = ({ children }) => {
         sx={{
           width: {
             xs: "100%",
-            lg: 900,
+            lg: 1200,
             display: "flex",
             flexDirection: "column",
-          },
+          },paddingX:[1.2, 0]
         }}
       >
         {children}

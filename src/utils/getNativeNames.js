@@ -10,3 +10,16 @@ export default function getNativeNames(nativeName) {
 
     return lang
 }
+
+export function getNativeNamesAsArray(nativeName) {
+    //console.log(country.name.nativeName)
+    if (!nativeName) return
+    let properties = Object.getOwnPropertyNames(nativeName)
+    let names=[]
+    properties.forEach(property => {
+        names.push(nativeName[property].common)
+
+    })
+
+    return names
+}
