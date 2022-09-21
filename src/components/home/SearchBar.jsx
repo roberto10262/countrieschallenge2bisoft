@@ -5,8 +5,22 @@ import {
   IconButton,
   Autocomplete,
 } from "@mui/material";
+import filter from "@utils/filter";
 import Search from "@mui/icons-material/Search";
-const SearchBar = ({ countries }) => {
+import { useRef } from "react";
+
+const SearchBar = ({ countries, setCountries }) => {
+  const searchFieldref = useRef();
+  const handleSearch = (target) => {
+    const searchTerm = target.firstChild.value;
+    filter(searchTerm, countries, setCountries, {
+      keys: [
+        ["name", "common"],
+        [, "name", "official"],
+      ],
+    });
+  };
+
   return (
     <Paper
       sx={{
@@ -22,13 +36,19 @@ const SearchBar = ({ countries }) => {
         renderInput={(params) => (
           <TextField
             {...params}
-            placeholder="search" fullWidth
+            ref={searchFieldref}
+            placeholder="search"
+            fullWidth
             InputProps={{
               ...params.InputProps,
               type: "search",
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton>
+                  <IconButton
+                    onClick={() =>
+                      handleSearch(searchFieldref.current.firstChild)
+                    }
+                  >
                     <Search />
                   </IconButton>
                 </InputAdornment>

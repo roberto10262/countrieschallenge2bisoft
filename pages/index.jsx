@@ -1,4 +1,5 @@
 import { getRegions, getSubRegions } from "@utils/filterDependencies";
+import { useState } from "react";
 import { getNativeNamesAsArray } from "@utils/getNativeNames";
 import CountryCard from "@/components/home/CountryCard";
 import theme from "src/theme";
@@ -8,10 +9,12 @@ import {
   Toolbar,
   Stack,
   Typography,
-  Link,Button,
+  Link,
+  Button,
   Box,
 } from "@mui/material";
 import SearchBar from "@/components/home/SearchBar";
+import FilterOptions from "@/components/home/FilterOptions";
 export async function getStaticProps() {
   let countries = null;
   try {
@@ -32,30 +35,53 @@ export async function getStaticProps() {
   };
 }
 
-const Home = ({ countries, regions, subRegions }) => {
-  const { name, region, area, subregion, timezones, capital, flag, flags } =
-    countries[0];
-  console.log(getNativeNamesAsArray(name.nativeName));
+const Home = ({ countries: rawCountries, regions, subRegions }) => {
+  const [countries, setCountries] = useState(rawCountries);
   return (
     <>
-      <Box>
-        <AppBar position="sticky">
-          <Toolbar>
-            <Stack sx={{ marginLeft: "auto", marginRight: "auto", width:{xs:"100%", md:600} }}>
-              <SearchBar countries={countries}/>
-              <Stack direction="row" sx={{paddingY:0.5}} spacing={2}>
-                <Button variant="contained" color="secondary" size="small">filter</Button>
-                <Button variant="contained" color="secondary" size="small">Export</Button>
-              </Stack>
+      <AppBar position="sticky">
+        <Toolbar>
+          <Stack
+            sx={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              width: { xs: "100%", md: 600 },
+            }}
+          >
+            <SearchBar countries={rawCountries} setCountries={setCountries} />
+            <Stack direction="row" sx={{ paddingY: 0.5, justifyContent:"center" }} spacing={2}>
+              <FilterOptions
+                regions={regions}
+                countriesState={{ countries: rawCountries, setCountries }}
+              />
+              <Button variant="contained" color="secondary" size="small">
+                Export
+              </Button>
             </Stack>
-          </Toolbar>
-        </AppBar>
+          </Stack>
+        </Toolbar>
+      </AppBar>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Box
-          sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+          sx={{
+            width: {
+              xs: "100%",
+              lg: 1200,
+            },
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
         >
-          {countries.map((country) => (
-            <CountryCard country={country} key={country.name.official} />
-          ))}
+          {countries &&
+            countries.map((country) => (
+              <CountryCard country={country} key={country.name.official} />
+            ))}
         </Box>
       </Box>
     </>
