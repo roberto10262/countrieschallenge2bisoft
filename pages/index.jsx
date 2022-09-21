@@ -2,6 +2,9 @@ import { getRegions, getSubRegions } from "@utils/filterDependencies";
 import { useState } from "react";
 import { getNativeNamesAsArray } from "@utils/getNativeNames";
 import CountryCard from "@/components/home/CountryCard";
+import toCSV from "@utils/export/toCSV";
+import toXLS from "@utils/export/toXLS"
+import toXML from "@utils/export/toXML"
 import theme from "src/theme";
 import {
   Paper,
@@ -49,12 +52,21 @@ const Home = ({ countries: rawCountries, regions, subRegions }) => {
             }}
           >
             <SearchBar countries={rawCountries} setCountries={setCountries} />
-            <Stack direction="row" sx={{ paddingY: 0.5, justifyContent:"center" }} spacing={2}>
+            <Stack
+              direction="row"
+              sx={{ paddingY: 0.5, justifyContent: "center" }}
+              spacing={2}
+            >
               <FilterOptions
                 regions={regions}
                 countriesState={{ countries: rawCountries, setCountries }}
               />
-              <Button variant="contained" color="secondary" size="small">
+              <Button
+                variant="contained"
+                color="secondary"
+                size="small"
+                onClick={() => toXML(countries)}
+              >
                 Export
               </Button>
             </Stack>
