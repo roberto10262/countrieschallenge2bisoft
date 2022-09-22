@@ -1,22 +1,21 @@
 import { getNativeNamesAsArray } from "@utils/getNativeNames";
-import { Paper, Stack, Typography, Link } from "@mui/material";
+import { Paper, Stack, Typography, Link, Skeleton } from "@mui/material";
 
-const CountryCard = ({ country }) => {
-  const { name, region, area, subregion, timezones, capital, flag, flags } =
-    country;
+const CardSize = { width: ["100%", 300], height: 300 };
+const CardColors = { background: "none", backdropFilter: "brightness(95%)" };
+const Margins = { marginX: [0, 1, 1.4], marginY: [1, 1, 1.4] };
+const styles = {
+  ...CardSize,
+  ...CardColors,
+  padding: 2,
+  ...Margins,
+};
 
+const CountryCard = ({
+  country: { name, region, area, subregion, timezones, capital, flag, flags },
+}) => {
   return (
-    <Paper
-      sx={{
-        background: "none",
-        width: ["100%", 300],
-        padding: 2,
-        marginX: [0, 1, 1.4],
-        marginY: [1, 1, 1.4],
-        backdropFilter:"brightness(95%)"
-    }}
-      elevation={2}
-    >
+    <Paper sx={styles} elevation={2}>
       <Stack>
         <Typography fontWeight="bold" textAlign="center">
           {name.common} {flag}
@@ -40,3 +39,13 @@ const CountryCard = ({ country }) => {
 };
 
 export default CountryCard;
+
+export const LoadingCountryCard = () => {
+  return (
+    <Skeleton
+      variant="rounded"
+      animation="wave"
+      sx={{ ...CardSize, ...CardColors, ...Margins }}
+    />
+  );
+};

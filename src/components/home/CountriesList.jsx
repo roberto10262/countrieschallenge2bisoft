@@ -1,25 +1,17 @@
-import { Box, Paper, Divider } from "@mui/material";
+import { useCountries } from "context/CountriesContext";
 import { Fragment } from "react";
-import CountryInfo from "@/components/home/CountryInfo";
-import CountriesListHeader from "@/components/home/CountriesListHeader";
-import getNativeNames from "@utils/getNativeNames";
+import CountryCard from "./CountryCard";
+import LoadingCountries from "@/components/home/LoadingCountries";
 
-const CountriesList = ({ countries }) => {
+const CountriesList = () => {
+  const { countries, isLoading } = useCountries();
+  if (isLoading) return <LoadingCountries />;
   return (
-    <Paper
-      sx={{
-       paddingX:0, background:"none"
-      }}
-      elevation={1}
-    >
-      
+    <Fragment>
       {countries.map((country) => (
-        <Fragment key={country.name.official}>
-          <CountryInfo country={country} />
-          <Divider />
-        </Fragment>
+        <CountryCard key={country.name.official} country={country} />
       ))}
-    </Paper>
+    </Fragment>
   );
 };
 
