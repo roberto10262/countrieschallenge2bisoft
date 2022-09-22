@@ -8,8 +8,10 @@ import {
 import filter from "@utils/filter";
 import Search from "@mui/icons-material/Search";
 import { useRef } from "react";
+import { useCountries } from "context/CountriesContext";
 
-const SearchBar = ({ countries, setCountries }) => {
+const SearchBar = () => {
+  const { countries, setCountries, isLoading } = useCountries();
   const searchFieldref = useRef();
   const handleSearch = (target) => {
     const searchTerm = target.firstChild.value;
@@ -24,18 +26,21 @@ const SearchBar = ({ countries, setCountries }) => {
   return (
     <Paper
       sx={{
-        background: "none",
+        background: "#fafafa",
         flexGrow: 1,
-        maxWidth: 620,
+        maxWidth: 620, marginLeft:"auto"
       }}
       elevation={4}
     >
       <Autocomplete
         freeSolo={true}
-        options={countries.map((option) => option.name.common)}
+        options={
+          isLoading ? [] : countries.map((option) => option.name.common)
+        }
         renderInput={(params) => (
           <TextField
             {...params}
+            size="small"
             ref={searchFieldref}
             placeholder="search"
             fullWidth
@@ -57,19 +62,6 @@ const SearchBar = ({ countries, setCountries }) => {
           />
         )}
       />
-      {/* <TextField
-        placeholder="search"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton>
-                <Search />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-        fullWidth
-      /> */}
     </Paper>
   );
 };
