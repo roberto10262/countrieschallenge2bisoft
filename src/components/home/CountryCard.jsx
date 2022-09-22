@@ -3,7 +3,7 @@ import { Paper, Stack, Typography, Link, Skeleton, Fade } from "@mui/material";
 import { useInView } from "react-intersection-observer";
 const CardSize = { width: ["100%", 300], height: 300 };
 const CardColors = { background: "none", backdropFilter: "brightness(95%)" };
-const Margins = { marginX: [0, 1, 1.4], marginY: [1, 1, 1.4] };
+const Margins = { marginX: [1, 1, 1.4], marginY: [1, 1, 1.4] };
 const styles = {
   ...CardSize,
   ...CardColors,

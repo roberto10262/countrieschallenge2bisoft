@@ -8,7 +8,7 @@ const Banner = () => {
       <Typography variant="h5" sx={{ fontWeight: 800, textAlign: "center" }}>
         Rest Countries Client
       </Typography>
-      <Box  sx={{...centerStyle, maxWidth:580}}>
+      <Box  sx={{...centerStyle, width:["95%", [580]]}}>
         <SearchBar />
       </Box>
       <Box  >
