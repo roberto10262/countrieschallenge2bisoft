@@ -9,6 +9,7 @@ const CountriesContextProvider = ({ children }) => {
   const [countries, setCountries] = useState(rawCountries);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const resetCountries= ()=> setCountries(rawCountries)
   useEffect(() => {
     fetch("api/countries")
       .then((res) => res.json())
@@ -26,7 +27,7 @@ const CountriesContextProvider = ({ children }) => {
 
   return (
     <CountriesContext.Provider
-      value={{ countries, setCountries, isLoading, isError, filterDependecies }}
+      value={{ countries, setCountries, isLoading, isError, filterDependecies, resetCountries, rawCountries }}
     >
       {children}
     </CountriesContext.Provider>

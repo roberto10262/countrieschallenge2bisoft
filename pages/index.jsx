@@ -3,11 +3,9 @@ import CountriesWrapper from "@/components/containers/CountriesWrapper";
 
 const Home = () => {
   return (
-    <>
-      <CountriesWrapper>
-        <CountriesList />
-      </CountriesWrapper>
-    </>
+    <CountriesWrapper>
+      <CountriesList />
+    </CountriesWrapper>
   );
 };
 

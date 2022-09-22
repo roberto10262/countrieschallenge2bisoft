@@ -10,7 +10,7 @@ const Filter = ({id, anchorEl, open, setOpen}) => {
   };
   const {
     filterDependecies: { regions },
-    countries,
+    rawCountries: countries,
     setCountries,
   } = useCountries();
   const handleChange = (region) => {

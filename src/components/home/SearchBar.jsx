@@ -28,7 +28,7 @@ const SearchBar = () => {
       sx={{
         background: "#fafafa",
         flexGrow: 1,
-        maxWidth: 620, marginLeft:"auto"
+        width:{xs:"100%", sm:580}
       }}
       elevation={4}
     >
