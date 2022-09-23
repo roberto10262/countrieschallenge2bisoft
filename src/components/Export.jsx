@@ -9,7 +9,7 @@ import toXML from "@utils/export/toXML";
 
 const Export = ({ id, anchorEl, open, setOpen }) => {
   const handleClose = () => {
-    setOpen((previousOpen) => !previousOpen);
+    setOpen(false);
   };
   const { countries } = useCountries();
   const handleChange = (format) => {

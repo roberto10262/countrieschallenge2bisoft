@@ -15,7 +15,6 @@ const CountryCard = ({
   country: { name, region, area, subregion, timezones, capital, flag, flags },
 }) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.7 });
-  const tagWidth={width:"12ch"}
   return (
     <Fade
       in={inView}

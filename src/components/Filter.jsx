@@ -6,7 +6,7 @@ import PopoverMenu from "./PopoverMenu";
 
 const Filter = ({ id, anchorEl, open, setOpen }) => {
   const handleClose = () => {
-    setOpen((previousOpen) => !previousOpen);
+    setOpen(false);
   };
   const {
     filterDependecies: { regions },
