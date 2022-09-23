@@ -1,5 +1,13 @@
 import { getNativeNamesAsArray } from "@utils/getNativeNames";
-import { Paper, Stack, Typography, Link, Skeleton, Fade, Divider } from "@mui/material";
+import {
+  Paper,
+  Stack,
+  Typography,
+  Link,
+  Skeleton,
+  Fade,
+  Divider,
+} from "@mui/material";
 import { useInView } from "react-intersection-observer";
 const CardSize = { width: ["100%", 300], height: 300 };
 const CardColors = { background: "none", backdropFilter: "brightness(95%)" };
@@ -7,40 +15,42 @@ const Margins = { marginX: [1, 1, 1.4], marginY: [1, 1, 1.4] };
 const styles = {
   ...CardSize,
   ...CardColors,
-  paddingX: 2,paddingY:4,
+  paddingX: 2,
+  paddingY: 4,
   ...Margins,
+  "&:hover": { boxShadow:4},
 };
 
 const CountryCard = ({
   country: { name, region, area, subregion, timezones, capital, flag, flags },
 }) => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.7 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
   return (
     <Fade
       in={inView}
       style={{ transformOrigin: "0 0 0" }}
       {...(inView ? { timeout: 1000 } : {})}
     >
-      <Paper sx={styles} ref={ref} elevation={2}>
+      <Paper sx={styles} ref={ref}>
         <Stack>
           <Typography fontWeight="bold" textAlign="center" gutterBottom>
             {name.common} {flag}
           </Typography>
-         <Typography textAlign={"center"} fontStyle="italic" >
-         {name.nativeName && (
-            <>({getNativeNamesAsArray(name.nativeName)?.[0]})</>
-          )}
-         </Typography>
-         <Typography>Capital: {capital}</Typography>
+          <Typography textAlign={"center"} fontStyle="italic">
+            {name.nativeName && (
+              <>({getNativeNamesAsArray(name.nativeName)?.[0]})</>
+            )}
+          </Typography>
+          <Typography>Capital: {capital}</Typography>
           <Typography>Região: {region} </Typography>
           <Typography>Sub-região: {subregion} </Typography>
           <Typography>
             Área: {area} Km<sup>2</sup>{" "}
           </Typography>
           <Typography>Fuso horário: {timezones?.[0]} </Typography>
-          <Link href={flags.png} sx={{color:"rgb(128,0,0)"}} target="_blank">
+          <Link href={flags.png} sx={{ color: "rgb(128,0,0)" }} target="_blank">
             {" "}
-            Bandeira
+            Visualizar Bandeira
           </Link>
         </Stack>
       </Paper>

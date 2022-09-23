@@ -17,7 +17,7 @@ const Filter = ({ id, anchorEl, open, setOpen }) => {
   const handleChange = (region) => {
     handleClose();
     resetCountries();
-    if (region === "all") return;
+    if (region === "tudo") return;
     filter(region, countries, setCountries, {
       threshold: 0,
       keys: ["region"],
