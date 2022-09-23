@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Desafio FrontEnd Developer 2iBi
 
-## Getting Started
+## Desrição
 
-First, run the development server:
+- Desenvolva um cliente REST que nos permite obter e visualizar as informações de propriedades dos países presentes na API (https://restcountries.com) como:
+    - nome
+    - capital
+    - região
+    - sub-região
+    - população
+    - área
+    - fuso horário
+    - nome nativo e 
+    - o link para visualizar a bandeira.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Implemente um mecanismo dentro do cliente REST para exportar as informações dos países para o formato XLS, CSV e XML.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias a utilizar
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Estás livre de utilizar qualquer tecnologia, técnica para a resolução do desafio proposto.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Como entregar
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Você deve disponibilizar seu código em algum serviço de hospedagem como Github, Bitbucket ou Gitlab.
+É obrigatório ter um **README** com todas as instruções sobre o seu desafio.
 
-## Learn More
+Assim que finalizar, nos avise pelo e-mail devchallenge@2iBi.com com:
+* Titulo: **[Frontend Developer Challenge] Teu Nome**;
+* Link do repositório com o desafio;
+* Link com o desafio hospedado;
+* Informações sobre ti: Github, LinkedIn entre outras informações que consideras importantes.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Como Iniciar projecto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Para Desenvolvimento
 
-## Deploy on Vercel
+`yarn dev`
+    ou
+`pnpm dev`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Para Produção
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`yarn build && yarn start` <br>
+ ou <br>
+`pnpm build && pnpm start`

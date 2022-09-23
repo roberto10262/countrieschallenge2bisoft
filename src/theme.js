@@ -23,10 +23,11 @@ const theme = createTheme({
       secondary: "rgba(255,255,255,0.54)",
     },
   },
-  props: {
-    MuiAppBar: {
-      color: 'transparent',
-    },
+  typography: {
+    fontFamily: 'Poppins',
+  },
+  button: {
+    fontWeight: 600,
   }
 });
 

@@ -16,7 +16,7 @@ const CountriesContextProvider = ({ children }) => {
       .then(({ countries, regions, subRegions }) => {
         setRawCountries(countries);
         setCountries(countries);
-        setFilterDependencies({ regions: ["all", ...regions], subRegions });
+        setFilterDependencies({ regions: ["tudo", ...regions], subRegions });
         setIsLoading(false);
       })
       .catch((error) => {
