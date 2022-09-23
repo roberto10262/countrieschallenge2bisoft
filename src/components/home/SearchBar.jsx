@@ -11,7 +11,7 @@ import { useRef } from "react";
 import { useCountries } from "context/CountriesContext";
 
 const SearchBar = () => {
-  const { countries, setCountries, isLoading } = useCountries();
+  const { rawCountries: countries, setCountries, isLoading } = useCountries();
   const searchFieldref = useRef();
   const handleSearch = (target) => {
     const searchTerm = target.firstChild.value;
@@ -28,15 +28,13 @@ const SearchBar = () => {
       sx={{
         background: "#fafafa",
         flexGrow: 1,
-        maxWidth: 620, marginLeft:"auto"
+        width: { xs: "100%", sm: 580 },
       }}
       elevation={4}
     >
       <Autocomplete
         freeSolo={true}
-        options={
-          isLoading ? [] : countries.map((option) => option.name.common)
-        }
+        options={isLoading ? [] : countries.map((option) => option.name.common)}
         renderInput={(params) => (
           <TextField
             {...params}

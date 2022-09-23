@@ -1,10 +1,10 @@
 import CountriesContextProvider from "context/CountriesContext";
-import Navbar from "./Navbar";
+import Banner from "./home/Banner";
 const Layout = ({ children }) => {
   return (
     <>
       <CountriesContextProvider>
-        <Navbar />
+        <Banner />
         {children}
       </CountriesContextProvider>
     </>

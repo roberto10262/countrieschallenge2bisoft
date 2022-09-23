@@ -42,9 +42,10 @@ const ToolbarControls = () => {
           ref={exportButtonRef}
           aria-describedby={exportButtonid}
           onClick={handleExport}
+          endIcon={<ArrowDropDown />}
         >
           Filtrar
-          <ArrowDropDown />
+          
         </Button>
       </ButtonGroup>
       <Filter

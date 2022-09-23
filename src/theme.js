@@ -1,5 +1,9 @@
-import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
+import {
+  createTheme
+} from "@mui/material/styles";
+import {
+  red
+} from "@mui/material/colors";
 
 // Create a theme instance.
 const theme = createTheme({
@@ -19,6 +23,11 @@ const theme = createTheme({
       secondary: "rgba(255,255,255,0.54)",
     },
   },
+  props: {
+    MuiAppBar: {
+      color: 'transparent',
+    },
+  }
 });
 
 export default theme;
