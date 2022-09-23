@@ -12,7 +12,7 @@ const Banner = () => {
       <Typography
         variant="h5"
         sx={{
-          fontWeight: 800,
+          fontWeight: 600,
           textAlign: "center",
           textShadow: "2px 2px 5px #66696F",
         }}
