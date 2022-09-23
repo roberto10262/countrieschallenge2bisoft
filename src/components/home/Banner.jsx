@@ -17,7 +17,7 @@ const Banner = () => {
           textShadow: "2px 2px 5px #66696F",
         }}
       >
-        Rest Countries Client
+        Lista de Países
       </Typography>
       <Box sx={{ ...centerStyle, width: ["95%", 580] }}>
         <SearchBar />
