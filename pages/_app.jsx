@@ -16,6 +16,7 @@ function MyApp(props) {
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="icon" type="image/x-icon" href="r.png" />
         <title>Lista de Países</title>
       </Head>
       <ThemeProvider theme={theme}>
